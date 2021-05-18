@@ -1,0 +1,28 @@
+def coinfn(n, coins):
+    
+    ways = [0] * (n+1); #one plus coin amount
+    #set first way to 1, 1 way to make 0
+    ways[0] = 1;
+    
+    #iterate thorugh all coins
+    for i in range(len(coins)):
+        #compare each index val with number of ways with coin val
+        for s in range(len(ways)):
+            if (coins[i] <= s):
+                #update the ways array
+                ways[s] += ways[(int)(s - coins[i])];
+    #return the value at the nth pos of ways array            
+    return ways[n];
+
+def printCoinArr(Coins):
+    for i in Coins:
+        print(i);
+        
+if __name__ == '__main__':
+    coins = [1, 5, 10, 25, 50]; #add coins to array
+    
+    print("The coins array:");
+    printCoinArr(coins);
+    
+    print("Number of ways:", end="");
+    print(coinfn(10, coins)); #enter in amount to get number of ways for the coin function 
